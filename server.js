@@ -16,7 +16,10 @@ const hbs = exphbs.create();
 
 const sess = {
   secret: 'Super secret secret',
-  cookie: {},
+  cookie: {
+    //Forces user to relogin after 10 minutes
+    expires: 10 * 60 * 1000,
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
