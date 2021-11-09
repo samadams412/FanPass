@@ -45,6 +45,7 @@ router.get('/:id', (req, res) => {
 
 // Create User
 router.post('/', (req, res) => {
+  console.log(req.body.username);
   // Expected input {username: 'Samadams', email: 'samadams412@gmail.com', twitter: 'samadams', password: 'testpassword123'}
   User.create({
     username: req.body.username,
@@ -58,6 +59,7 @@ router.post('/', (req, res) => {
     password: req.body.password,
   })
     .then((dbUserData) => {
+      console.log(dbUserData);
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
@@ -77,7 +79,7 @@ router.post('/login', (req, res) => {
   // Expected input {email: 'samadams412@gmail.com', password: 'testpassword123'}
   User.findOne({
     where: {
-      username: req.body.username,
+      email: req.body.email,
     },
   }).then((dbUserData) => {
     if (!dbUserData) {

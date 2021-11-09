@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     where: {
       user_id: req.session.user_id,
     },
-    attributes: ['id', 'title', 'content', 'user_id', 'created_at'],
+    attributes: ['id', 'title', 'post_content', 'user_id', 'created_at'],
     include: [
       {
         model: Comment,
@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
 
 router.get('/user/:id', (req, res) => {
   Post.findAll({
-    attributes: ['id', 'title', 'content', 'user_id', 'created_at'],
+    attributes: ['id', 'title', 'post_content', 'user_id', 'created_at'],
     include: [
       {
         model: Comment,
@@ -94,7 +94,7 @@ router.get('/', (req, res) => {
     where: {
       user_id: req.session.user_id,
     },
-    attributes: ['id', 'title', 'content', 'user_id', 'created_at'],
+    attributes: ['id', 'title', 'post_content', 'user_id', 'created_at'],
     include: [
       {
         model: Comment,
@@ -121,7 +121,7 @@ router.get('/', (req, res) => {
 });
 router.get('/user/:id', (req, res) => {
   Post.findAll({
-    attributes: ['id', 'title', 'content', 'user_id', 'created_at'],
+    attributes: ['id', 'title', 'post_content', 'user_id', 'created_at'],
     include: [
       {
         model: Comment,
@@ -176,7 +176,7 @@ router.get('/user/:id', (req, res) => {
 // Get single Post for editing
 router.get('/edit/:id', (req, res) => {
   Post.findByPk(req.params.id, {
-    attributes: ['id', 'content', 'title'],
+    attributes: ['id', 'post_content', 'title'],
     include: [
       {
         model: Comment,

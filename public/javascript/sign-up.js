@@ -5,16 +5,16 @@ const signupBtn = document.querySelector('#signupBtn');
 async function signupHandler(event) {
   event.preventDefault();
   // retrieve username, password, email, twitter, and interests
-  const username = document.querySelector('#inputUsername3').value.trim();
-  const password = document.querySelector('#inputPassword3').value.trim();
-  const email = document.querySelector('#inputEmail3').value.trim();
-  const twitter = document.querySelector('#inputTwitter3').value.trim();
-  const interestOne = document.querySelector('#interest1').value.trim();
-  const interestTwo = document.querySelector('#interest2').value.trim();
-  const interestThree = document.querySelector('#interest3').value.trim();
-  const interestFour = document.querySelector('#interest4').value.trim();
-  const interestFive = document.querySelector('#interest5').value.trim();
-
+  const username = document.querySelector('#name-signup').value.trim();
+  const password = document.querySelector('#password-signup').value.trim();
+  const email = document.querySelector('#email-signup').value.trim();
+  const twitter = document.querySelector('#twitter-signup').value.trim();
+  const interestOne = document.querySelector('#interestOne').value.trim();
+  const interestTwo = document.querySelector('#interestTwo').value.trim();
+  const interestThree = document.querySelector('#interestThree').value.trim();
+  const interestFour = document.querySelector('#interestFour').value.trim();
+  const interestFive = document.querySelector('#interestFive').value.trim();
+  console.log(username, password, email);
   // check that username and password values exist... if they do, send their info to the database
   if (
     password &&
@@ -32,13 +32,13 @@ async function signupHandler(event) {
       body: JSON.stringify({
         username,
         email,
+        password,
         twitter,
         interestOne,
         interestTwo,
         interestThree,
         interestFour,
         interestFive,
-        password,
       }),
       headers: { 'Content-Type': 'application/json' },
     });
@@ -52,4 +52,4 @@ async function signupHandler(event) {
 }
 
 // Add event listener to signupBtn, send user info to database
-signupBtn.addEventListener('click', signupHandler);
+signupBtn.addEventListener('submit', signupHandler);
