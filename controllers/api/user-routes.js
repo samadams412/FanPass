@@ -45,7 +45,7 @@ router.get('/:id', (req, res) => {
 
 // Create User
 router.post('/', (req, res) => {
-  console.log(req.body.username);
+  console.log(req.body.username, req.body.email, req.body.twitter);
   // Expected input {username: 'Samadams', email: 'samadams412@gmail.com', twitter: 'samadams', password: 'testpassword123'}
   User.create({
     username: req.body.username,
@@ -99,7 +99,7 @@ router.post('/login', (req, res) => {
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
 
-      res.json({ user: dbUserData, message: 'You are now logged in!' });
+      res.json({ user: dbUserData, message: 'Logged In!' });
     });
   });
 });

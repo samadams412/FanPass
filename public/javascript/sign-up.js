@@ -27,7 +27,7 @@ async function signupHandler(event) {
     interestFour &&
     interestFive
   ) {
-    const response = await fetch('/api/user', {
+    const response = await fetch('/api/users', {
       method: 'Post',
       body: JSON.stringify({
         username,
@@ -44,6 +44,7 @@ async function signupHandler(event) {
     });
     if (response.ok) {
       console.log('Success!');
+      console.log(username, password, email, twitter);
       document.location.replace('feed-routes');
     } else {
       alert(response.statusText);
