@@ -7,6 +7,7 @@ async function signupHandler(event) {
   // retrieve username, password, email, twitter, and interests
   const username = document.querySelector('#name-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
+  const passwordConfirm = document.querySelector('#password-signup-confirm').value.trim();
   const email = document.querySelector('#email-signup').value.trim();
   const twitter = document.querySelector('#twitter-signup').value.trim();
   const interestOne = document.querySelector('#interestOne').value.trim();
@@ -20,6 +21,7 @@ async function signupHandler(event) {
     username &&
     email &&
     password &&
+    passwordConfirm &&
     twitter &&
     interestOne &&
     interestTwo &&
@@ -33,6 +35,7 @@ async function signupHandler(event) {
         username,
         email,
         password,
+        passwordConfirm,
         twitter,
         interestOne,
         interestTwo,
@@ -43,9 +46,13 @@ async function signupHandler(event) {
       headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
-      console.log('Success!');
+      if(password===passwordConfirm){
+        console.log('Success!');
       console.log(username, password, email, twitter);
       document.location.replace('/dashboard');
+      } else {
+        console.log("passwords must match");
+      }
     } else {
       alert(response.statusText);
     }

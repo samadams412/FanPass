@@ -40,7 +40,7 @@ router.get('/:id', (req, res) => {
         attibutes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
         include: {
           model: User,
-          attributes: ['username', 'twitter'],
+          attributes: ['username', 'twitter', 'email'],
         },
       },
     ],
@@ -60,7 +60,6 @@ router.get('/:id', (req, res) => {
 
 // Create a Post
 router.post('/', withAuth, (req, res) => {
-  console.log('=====TESTPOST=================');
   Post.create({
     title: req.body.title,
     post_content: req.body.post_content,

@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/user/:id', (req, res) => {
+router.get('/users/:id', (req, res) => {
   Post.findAll({
     attributes: ['id', 'title', 'post_content', 'user_id', 'created_at'],
     include: [

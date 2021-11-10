@@ -1,17 +1,29 @@
-<div class="card mb-6">
-  <header class="card-header card-header-title has-background-grey-lighter">
-    
+
+<div class="columns ml-2">
+    <div class="column is-12">
+        <div class="card mb-3">
+    <header class="card-header card-header-title has-background-grey-lighter">
         <div class="column">
             <p class=" has-text-primary-light"></p>
-      <a href="/post/{{id}}"  class="has-text-black is-capitalized is-pulled-left">{{title}} </a></p>
+      <p><a href="/post/{{id}}"  class="has-text-black is-capitalized is-pulled-left">{{title}} </a></p>
       </div>
-
-      <div class="column">
-      <span class=""> </span>
+      
+      <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <img src="https://avatars.githubusercontent.com/u/38537851?s=400&u=a4034d6b9d94e36985516d7fb82be8204407c862&v=4" alt="Placeholder-image">
+          {{!-- need to find way to upload/display user avatar here --}}
+          {{!-- <img src={{user.userAvatar}} --}}
+        </figure>
       </div>
-    
-  </header>
+      <div class="media-content">
+        <p class="title is-4">{{user.username}}</p>
+        <p class="subtitle is-6">@{{user.twitter}}</p>
+      </div>
+    </div>
+    </header>
 
+  <div class="card-content">
     <div class="card-content">
         <div class="content has-text-justified">
             {{post_content}}
@@ -23,3 +35,39 @@
             </div>
         
     </div>
+  </div>
+    </div>
+
+    
+    
+</div>
+
+
+
+
+
+{{!-- 
+<div class="card mb-6">
+  <header class="card-header card-header-title has-background-grey-lighter">
+    
+        <div class="column">
+            <p class=" has-text-primary-light"></p>
+      <p><a href="/post/{{id}}"  class="has-text-black is-capitalized is-pulled-left">{{title}} </a></p>
+      </div>
+
+      <div class="column">
+      <span class=""> </span>
+      </div>
+    
+  </header>
+    <div class="card-content">
+        <div class="content has-text-justified">
+            {{post_content}}
+        </div>
+            <div class="is-pulled-right">
+                <b>{{user.username}}</b> | 
+                <a href="https://twitter.com/{{user.twitter}}"><i class="fab fa-twitter"></i></a> 
+                 | {{format_date created_at}} | <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+            </div>
+        
+    </div> --}}

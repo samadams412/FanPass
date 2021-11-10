@@ -3,11 +3,10 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers/');
-
+const helpers = require('./utils/helpers');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-const helpers = require('./utils/helpers');
 const hbs = exphbs.create({ helpers });
 
 const app = express();
@@ -17,7 +16,7 @@ const sess = {
   secret: 'Super secret secret',
   cookie: {
     //Forces user to relogin after 10 minutes
-    expires: 10 * 60 * 1000,
+    // expires: 10 * 60 * 1000,
   },
   resave: false,
   saveUninitialized: true,

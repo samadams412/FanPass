@@ -14,15 +14,19 @@
   <div class="wrapper">
     <header>
         <h1 class="title is-2 px-2 py-2">FanPass</h1>
-        <nav class="navbar mt-2 is-info">
+        <nav class="navbar mt-2 is-link">
           <!-- If logged in navbar will display routes to Home, Dashboard, Create new post, and logout button -->
             {{#if loggedIn}}
             <div class="navbar-menu pl-3">
               <a href="/" class="navbar-item is-hoverable pt-1 ml-3">Home</a>
               <a href="/dashboard" class="navbar-item is-hoverable pt-1">Dashboard</a>
+              <a href="/profile" class="navbar-item is-hoverable pt-1">Profile</a>
               <a href="/dashboard/create/" class="navbar-item is-hoverable pt-1 mr-4">New Post</a>
               <div class="navbar-end">
-                <button id="logout" class="button is-danger mr-3 mt-1">Logout</button>
+                <div class="navbar-item">
+                  <button id="logout" class="button is-danger mr-3 mt-1">Logout</button>
+                </div>
+                
               </div>
               
               
@@ -30,9 +34,19 @@
               <!-- If not logged in navbar will only display route to Home, and Login button to /login -->
               {{else}}
               <a href="/" class="navbar-item is-hoverable pt-1 ml-3">Home</a>
-              <a href="/login" class="button is-primary ml-1">Login</a>
-                
+              <div class="navbar-end">
+                <div class="navbar-item">
+                  <div class="buttons">
+                    <a href="/sign-up"class="button is-primary">
+                      <strong>Sign up</strong>
+                    </a>
+              <a href="/login"class="button is-light">
+                Log in
+              </a>
+                </div>
               </div>
+            </div>
+          </div>
             {{/if}}
         </nav>
     </header>
@@ -40,9 +54,9 @@
     <main>
             {{{ body }}}
     </main>
-
+</div>
 <!---Footer--->
-    <footer class="footer rows pb-2">
+    <footer class="footer rows pb-1">
         <div class="row-is-full content has-text-centered">
             <p>
             <a href="/">Home</a>{{#if loggedIn}} | 
@@ -61,13 +75,14 @@
     </p>
   </div>
     </footer>
-  </div>
+  
 
 
 {{#if loggedIn}}
 <script src="/javascript/logout.js"></script>
 {{/if}}
 
-</body>
+
+
 
 </html>
