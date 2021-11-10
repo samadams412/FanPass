@@ -22,7 +22,9 @@
 
 ## Project Description
 
-- A blog site designed for users that love to post and share about music. 
+- A blog site designed for users that love to post and share about music.
+
+![image](/public/stylesheets/assets/fanpassimg1.PNG)
 
 ## Installation Instructions
 
