@@ -1,5 +1,5 @@
 // Handle on signup button
-const signupBtn = document.querySelector('#signupBtn');
+//const signupBtn = document.querySelector('#signupBtn');
 
 // Send user info to database
 async function signupHandler(event) {
@@ -17,9 +17,9 @@ async function signupHandler(event) {
   console.log(username, password, email);
   // check that username and password values exist... if they do, send their info to the database
   if (
-    password &&
-    email &&
     username &&
+    email &&
+    password &&
     twitter &&
     interestOne &&
     interestTwo &&
@@ -45,7 +45,7 @@ async function signupHandler(event) {
     if (response.ok) {
       console.log('Success!');
       console.log(username, password, email, twitter);
-      document.location.replace('feed-routes');
+      document.location.replace('/dashboard');
     } else {
       alert(response.statusText);
     }
@@ -53,4 +53,6 @@ async function signupHandler(event) {
 }
 
 // Add event listener to signupBtn, send user info to database
-signupBtn.addEventListener('submit', signupHandler);
+document
+  .querySelector('.signup-form')
+  .addEventListener('submit', signupHandler);

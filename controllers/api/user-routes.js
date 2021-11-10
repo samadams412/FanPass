@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const { User, Post, Comment, Likes } = require('../../models');
-
+const withAuth = require('../../utils/auth');
 // Get all users for mainpage
 router.get('/', (req, res) => {
   User.findAll({
     attributes: { exclude: ['password'] },
   })
-    .then((userInfo) => res.json(userInfo))
+    .then((dbUserData) => res.json(dbUserData))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
@@ -23,22 +23,27 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Post,
-        attributes: ['id', 'title', 'post_content'],
+        attributes: ['id', 'title', 'post_content', 'created_at'],
       },
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id'],
+        attributes: ['id', 'comment_text', 'created_at'],
+        include: {
+            model: Post,
+            attributes: ["title"],
+        }
       },
     ],
   })
-    .then((userInfo) => {
-      if (!userInfo) {
+    .then((dbUserData) => {
+      if (!dbUserData) {
         res.status(404).json({ message: 'No user found with this id' });
+        return;
       }
-      res.json(userInfo);
+      res.json(dbUserData);
     })
     .catch((err) => {
-      console.log('Opps! ' + err);
+      console.log(err);
       res.status(500).json(err);
     });
 });
@@ -51,18 +56,25 @@ router.post('/', (req, res) => {
     username: req.body.username,
     email: req.body.email,
     twitter: req.body.twitter,
+    password: req.body.password,
     interestOne: req.body.interestOne,
     interestTwo: req.body.interestTwo,
     interestThree: req.body.interestThree,
     interestFour: req.body.interestFour,
     interestFive: req.body.interestFive,
-    password: req.body.password,
   })
     .then((dbUserData) => {
       console.log(dbUserData);
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
+        req.session.email = dbUserData.email;
+        req.session.twitter = dbUserData.twitter;
+        req.session.interestOne = dbUserData.interestOne;
+        req.session.interestTwo = dbUserData.interestTwo;
+        req.session.interestThree = dbUserData.interestThree;
+        req.session.interestFour = dbUserData.interestFour;
+        req.session.interestFive = dbUserData.interestFive;
         req.session.loggedIn = true;
 
         res.json(dbUserData);
@@ -97,6 +109,13 @@ router.post('/login', (req, res) => {
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
+      req.session.email = dbUserData.email;
+      req.session.twitter = dbUserData.twitter;
+      req.session.interestOne = dbUserData.interestOne;
+      req.session.interestTwo = dbUserData.interestTwo;
+      req.session.interestThree = dbUserData.interestThree;
+      req.session.interestFour = dbUserData.interestFour;
+      req.session.interestFive = dbUserData.interestFive;
       req.session.loggedIn = true;
 
       res.json({ user: dbUserData, message: 'Logged In!' });
@@ -116,17 +135,18 @@ router.post('/logout', (req, res) => {
 });
 
 // User can delete account
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
   User.destroy({
     where: {
       id: req.params.id,
     },
   })
-    .then((userInfo) => {
-      if (!userInfo) {
+    .then((dbUserData) => {
+      if (!dbUserData) {
         res.status(404).json({ message: 'No user found with this id' });
+        return;
       }
-      res.json(userInfo);
+      res.json(dbUserData);
     })
     .catch((err) => {
       console.log(err);

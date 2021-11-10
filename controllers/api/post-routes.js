@@ -1,21 +1,25 @@
 const router = require('express').Router();
 const { Post, Likes, User, Comment } = require('../../models');
+const withAuth = require('../../utils/auth');
+const sequelize = require('../../config/connection');
 
 router.get('/', (req, res) => {
+  console.log('========================');
   Post.findAll({
-    attributes: ['id', 'post_content', 'title'],
+    attributes: ['id', 'post_content', 'title', 'created_at'],
+    order: [['created_at', 'DESC']],
     include: [
       {
         model: Comment,
         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
         include: {
           model: User,
-          attributes: ['username'],
+          attributes: ['username', 'twitter'],
         },
       },
       {
         model: User,
-        attributes: ['username'],
+        attributes: ['username', 'twitter'],
       },
     ],
   })
@@ -29,14 +33,14 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   Post.findOne({
     where: { id: req.params.id },
-    attributes: ['id', 'title', 'post_content', 'user_id'],
+    attributes: ['id', 'title', 'post_content', 'user_id', 'created_at'],
     include: [
       {
         model: Comment,
         attibutes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
         include: {
           model: User,
-          attributes: ['username'],
+          attributes: ['username', 'twitter'],
         },
       },
     ],
@@ -55,10 +59,11 @@ router.get('/:id', (req, res) => {
 });
 
 // Create a Post
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
+  console.log('=====TESTPOST=================');
   Post.create({
     title: req.body.title,
-    post_content: req.body.content,
+    post_content: req.body.post_content,
     user_id: req.session.user_id,
   })
     .then((dbPostData) => res.json(dbPostData))
@@ -69,7 +74,7 @@ router.post('/', (req, res) => {
 });
 
 // Update a Post
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
   Post.update(
     {
       title: req.body.title,
@@ -109,7 +114,7 @@ router.put('/like', (req, res) => {
 });
 
 // Delete post with that ID
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
   console.log('id', req.params.id);
   Post.destroy({
     where: {
