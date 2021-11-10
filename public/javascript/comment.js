@@ -2,7 +2,7 @@ async function commentFormHandler(event) {
   event.preventDefault();
 
   const comment_text = document
-    .querySelector('textarea[name="comment-body"]')
+    .querySelector('input[name="comment-body"]')
     .value.trim();
 
     // retrieve ID of post that is being commented on
