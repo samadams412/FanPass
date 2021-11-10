@@ -75,6 +75,15 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/about', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('about');
+});
+
 router.get('/sign-up', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');

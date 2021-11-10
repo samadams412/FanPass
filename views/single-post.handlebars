@@ -1,19 +1,29 @@
-{{> post-info post}}
+{{> post-info-dash post}}
 
 {{#if loggedIn}}
-<form class="comment-form">
-  <div>
-    <textarea class="ml-5" name="comment-body"></textarea>
-  </div>
+<div class="column">
+  <form class="comment-form">
+  
+    <input
+        class="textarea is-small ml-2"
+        name="comment-body"
+        placeholder="insert comment here"
+      />
+    
+  
 
   <div>
-    <button class="button is-warning ml-5 mb-5" type="submit">Comment</button>
+    <button class="button is-warning ml-5 mt-2" type="submit">Comment</button>
   </div>
   
 </form>
-{{/if}}
+</div>
 
-{{> comments post.comments}}
+{{/if}}
+<div class="column">
+  {{> comments post.comments}}
+</div>
+
 
 {{#if loggedIn}}
 <script src="/javascript/comment.js"></script>
