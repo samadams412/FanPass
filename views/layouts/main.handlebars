@@ -7,20 +7,28 @@
   <title>FanPass</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
   <link rel="stylesheet" href="/stylesheets/jass.css">
+  <link rel=stylesheet href="https://s3-us-west-2.amazonaws.com/colors-css/2.2.0/colors.min.css">
   <link rel="stylesheet" href="/stylesheets/style.css">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
   <div class="wrapper">
-    <header>
-        <h1 class="title is-2 px-2 py-2">FanPass</h1>
+    <section class="hero is-info is-small">
+  <div class="hero-body">
+    <p class="title">
+      FanPass
+    </p>
+    <p class="subtitle">
+      The Last Great Music Blog
+    </p>
         <nav class="navbar mt-2 is-link">
           <!-- If logged in navbar will display routes to Home, Dashboard, Create new post, and logout button -->
             {{#if loggedIn}}
             <div class="navbar-menu pl-3">
               <a href="/" class="navbar-item is-hoverable pt-1 ml-3">Home</a>
               <a href="/dashboard" class="navbar-item is-hoverable pt-1">Dashboard</a>
-              <a href="/profile" class="navbar-item is-hoverable pt-1">Profile</a>
+              
+              <a href="/profile/" class="navbar-item is-hoverable pt-1">Profile</a>
               <a href="/dashboard/create/" class="navbar-item is-hoverable pt-1 mr-4">New Post</a>
               <div class="navbar-end">
                 <div class="navbar-item">
@@ -51,34 +59,39 @@
           </div>
             {{/if}}
         </nav>
-    </header>
+  </div>
+</section>
+    
 
     <main>
             {{{ body }}}
     </main>
 </div>
 <!---Footer--->
-    <footer class="footer rows pb-1">
+<div class="has-text-link-dark">
+  <footer class="footer rows pb-1 has-background-info">
         <div class="row-is-full content has-text-centered">
             <p>
-            <a href="/">Home</a>{{#if loggedIn}} | 
-            <a href="/dashboard">Dashboard</a> | 
-            <a href="/profile/">Profile</a>
+            <a href="/" class="has-text-primary-light">Home</a>{{#if loggedIn}} | 
+            <a href="/dashboard" class="has-text-primary-light">Dashboard</a> | 
+            <a href="/profile/" class="has-text-primary-light">Profile</a>
             {{else}}
-             | <a href="/login">Login</a> |
-              <a href="/about">About FanPass</a>
+             | <a href="/login" class="has-text-primary-light">Login</a> |
+              <a href="/about" class="has-text-primary-light">About FanPass</a>
             {{/if}}
             </p>
         </div>
       <div class="row-is-full content has-text-centered">
     <p>
-      <strong>FanPass</strong> by <a href="https://github.com/samadams412">Sam Adams, David Jay, Joey De La Rosa</a> | Source Code:
+      <strong>FanPass</strong> by <a href="https://github.com/samadams412" class="has-text-primary-light">Sam Adams, David Jay, Joey De La Rosa</a> | Source Code:
       <a href="https://github.com/samadams412/fanPass"><i class="fab fa-github"></i></a>  |  
        <a href="mailto:samueladams412@gmail.com"><i class="far fa-envelope"></i></a>
     </p>
   </div>
     </footer>
   
+</div>
+    
 
 
 {{#if loggedIn}}

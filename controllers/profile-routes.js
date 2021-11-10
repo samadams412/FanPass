@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Post, Comment, Like } = require('../models');
-
+const withAuth = require("../utils/auth");
 // Get all user posts, include comments and likes
 router.get('/', (req, res) => {
   Post.findAll({
@@ -235,6 +235,40 @@ router.get('/user/:id', (req, res) => {
     where: {
       id: req.params.id,
     },
+  })
+    .then((userData) => {
+      if (!userData) {
+        res.status(404).json({ message: 'No user found with this id' });
+        return;
+      }
+
+      res.render('user-profile', {
+        user,
+        loggedIn: req.session.loggedIn,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.get('/profile/edit/:id', withAuth, (req, res) => {
+  User.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: [
+      'id',
+      'username',
+      'email',
+      'twitter',
+      'interestOne',
+      'interestTwo',
+      'interestThree',
+      'interestFour',
+      'interestFive',
+    ],
   })
     .then((userData) => {
       if (!userData) {
