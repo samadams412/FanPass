@@ -253,7 +253,7 @@ router.get('/user/:id', (req, res) => {
     });
 });
 
-router.get('/profile/edit/:id', withAuth, (req, res) => {
+router.get('/edit/:id', withAuth, (req, res) => {
   User.findOne({
     where: {
       id: req.params.id,
