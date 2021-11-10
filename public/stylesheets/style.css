@@ -47,6 +47,91 @@ form > div {
 form label {
   display: block;
 }
+
+#myVideo {
+  position: relative;
+  min-width: 100%;
+  max-height: 35%;
+  z-index: 0;
+}
+
+#smallR {
+  font-size: 3rem;
+  position: inherit;
+}
+
+.centered {
+  font-family: "Poiret One", cursive;
+  position: absolute;
+  top: 650px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  color: aliceblue;
+  text-shadow: 5px 5px darkred;
+  line-height: 100px;
+  font-weight: bolder;
+  font-size: 12rem;
+  z-index: +1;
+  margin: 0%;
+}
+
+#titleIntro {
+  margin: none;
+  padding: none;
+  z-index: -2;
+  background-color: black;
+}
+#intro {
+  font-size: 1.5rem;
+  align-items: center;
+  text-align: center;
+  font-weight: bolder;
+  color: whitesmoke;
+  opacity: 20%;
+  margin: 0;
+  padding: 20px;
+  opacity: 90%;
+  text-shadow: 1.5px 1.5px darkred;
+  z-index: +1;
+  margin-bottom: 10px;
+  position: relative;
+  top: -80px;
+  line-height: 20px;
+}
+
+#searchBand {
+  font-weight: bolder;
+  color: royalblue;
+  font-size: 1.5rem;
+  text-align: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+#ticketMaster {
+  font-family: "Poiret One", cursive;
+  display: inline;
+  align-items: center;
+  text-align: center;
+  color: white;
+  text-shadow: 1.5px 1.5px black;
+}
+
+#ticketMaster,
+#youtube {
+  border-radius: 15px;
+  /* background-color: black; */
+  font-family: "Poiret One", cursive;
+}
+.david,
+.sam {
+  /* border: 1px solid white;  for reference to display search data need to take out after API info is linked and displayed */
+  width: 50%;
+  height: 400px;
+  display: inline;
+  border-radius: 20%;
+  margin: 10px;
+}
 /* body {
   background-image: url('./assets/album-art-collage.png');
 } */
