@@ -18,7 +18,7 @@
           <!-- If logged in navbar will display routes to Home, Dashboard, Create new post, and logout button -->
             {{#if loggedIn}}
             <div class="navbar-menu pl-3">
-              <a href="/" class="navbar-item is-hoverable pt-1">Home</a>
+              <a href="/" class="navbar-item is-hoverable pt-1 ml-3">Home</a>
               <a href="/dashboard" class="navbar-item is-hoverable pt-1">Dashboard</a>
               <a href="/dashboard/create/" class="navbar-item is-hoverable pt-1 mr-4">New Post</a>
               <div class="navbar-end">
@@ -29,8 +29,8 @@
               {{!-- <button id="logout" class="button is-danger">Logout</button> --}}
               <!-- If not logged in navbar will only display route to Home, and Login button to /login -->
               {{else}}
-              <a href="/" class="navbar-item is-hoverable pt-1">Home</a>
-              <a href="/login" class="button is-primary">Login</a>
+              <a href="/" class="navbar-item is-hoverable pt-1 ml-3">Home</a>
+              <a href="/login" class="button is-primary ml-1">Login</a>
                 
               </div>
             {{/if}}
