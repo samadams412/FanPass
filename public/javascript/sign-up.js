@@ -54,5 +54,5 @@ async function signupHandler(event) {
 
 // Add event listener to signupBtn, send user info to database
 document
-  .querySelector('.signup-form')
+  .querySelector('.signup-form-2')
   .addEventListener('submit', signupHandler);

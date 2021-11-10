@@ -21,18 +21,19 @@
               <a href="/" class="navbar-item is-hoverable pt-1">Home</a>
               <a href="/dashboard" class="navbar-item is-hoverable pt-1">Dashboard</a>
               <a href="/dashboard/create/" class="navbar-item is-hoverable pt-1 mr-4">New Post</a>
-              <button id="logout">Logout</button>
+              <div class="navbar-end">
+                <button id="logout" class="button is-danger mr-3 mt-1">Logout</button>
+              </div>
+              
               
               {{!-- <button id="logout" class="button is-danger">Logout</button> --}}
               <!-- If not logged in navbar will only display route to Home, and Login button to /login -->
               {{else}}
-              <div class="navbar-start">
-                <a href="/" class="navbar-item is-hoverable pt-1">Home</a>
-                <a href="/login" class="button is-primary">Login</a>
+              <a href="/" class="navbar-item is-hoverable pt-1">Home</a>
+              <a href="/login" class="button is-primary">Login</a>
                 
               </div>
-              {{/if}}
-            </div>
+            {{/if}}
         </nav>
     </header>
 
@@ -55,7 +56,7 @@
       <div class="row-is-full content has-text-centered">
     <p>
       <strong>FanPass</strong> by <a href="https://github.com/samadams412">Sam Adams, David Jay, Joey De La Rosa</a> | Source Code:
-      <a href="https://github.com/samadams412/techBlog"><i class="fab fa-github"></i></a>  |  
+      <a href="https://github.com/samadams412/fanPass"><i class="fab fa-github"></i></a>  |  
        <a href="mailto:samueladams412@gmail.com"><i class="far fa-envelope"></i></a>
     </p>
   </div>
