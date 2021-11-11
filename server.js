@@ -16,7 +16,7 @@ const sess = {
   secret: 'Super secret secret',
   cookie: {
     //Forces user to relogin after 10 minutes
-    // expires: 10 * 60 * 1000,
+    expires: 10 * 60 * 1000,
   },
   resave: false,
   saveUninitialized: true,
